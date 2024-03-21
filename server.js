@@ -75,7 +75,7 @@ app.get('/api/verify', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     const referringUser = await User.findOne({username: req.body.referralLink})
     const now = new Date()
-  try {
+
     if(referringUser){
       await User.updateOne({username : req.body.referralLink},{
         $push: { referred: {
@@ -141,11 +141,6 @@ app.post('/api/register', async (req, res) => {
         subject:'Successful User Referral Alert'
       })
       }
-    
-  } catch (error) {
-    console.log(error)
-    return res.json({ status: 'error', error: 'email already exists' })
-  }
 })
 
 app.get('/:id/refer', async(req,res)=>{
@@ -690,7 +685,7 @@ const change = (users, now) => {
         res.json({message:'investment is no a number'})
         // return
       }
-      else if (user.investment === []) {
+      else if (user.investment == []) {
         console.log('investment is not empty array')
         res.json({message:'investment is an empty array'})
         // return
