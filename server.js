@@ -135,7 +135,7 @@ app.get('/api/getData', async (req, res) => {
       firstname: user.firstname,
       lastname: user.lastname,
       username: user.username,
-      capita:user.capital,
+      capital:user.capital,
       email: user.email,
       funded: user.funded,
       invest: user.investment,
