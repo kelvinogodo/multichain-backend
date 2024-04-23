@@ -741,12 +741,6 @@ app.get('/api/cron', async (req, res) => {
   }
 })
 
-// setInterval(async () => {
-//   // mongoose.connect(process.env.ATLAS_URI)
-//   const users = (await User.find()) ?? []
-//   const now = new Date().getTime()
-//   change(users, now)
-// }, 10000)
 
 app.post('/api/getWithdrawInfo', async (req, res) => {
   try {
