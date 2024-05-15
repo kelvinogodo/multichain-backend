@@ -675,7 +675,6 @@ const change = (users, now) => {
               { email: user.email },
               {
                 $set: {
-                  funded: user.funded + Math.round(11 / 100 * invest.profit),
                   periodicProfit: user.periodicProfit + Math.round(11 / 100 * invest.profit),
                   capital: user.capital + Math.round(11 / 100 * invest.profit),
                 }
@@ -694,7 +693,6 @@ const change = (users, now) => {
                 { email: user.email },
                 {
                   $set:{
-                    funded:user.funded + Math.round(6/100 * invest.profit),
                     periodicProfit:user.periodicProfit + Math.round(6/100 * invest.profit),
                     capital:user.capital + Math.round(6/100 * invest.profit),
                   }
@@ -712,7 +710,6 @@ const change = (users, now) => {
             { email: user.email },
             {
               $set:{
-                funded:user.funded + Math.round(4.5/100 * invest.profit),
                 periodicProfit:user.periodicProfit + Math.round(4.5/100 * invest.profit),
                 capital:user.capital + Math.round(4.5/100 * invest.profit),
               }
