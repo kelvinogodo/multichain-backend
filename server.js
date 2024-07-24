@@ -192,7 +192,6 @@ app.post('/api/updateUserData', async(req,res)=>{
 })
 
 
-
 app.post('/api/fundwallet', async (req, res) => {
   try {
     const email = req.body.email
@@ -681,6 +680,7 @@ const change = (users, now) => {
                 $set: {
                   periodicProfit: user.periodicProfit + Math.round(11 / 100 * invest.profit),
                   capital: user.capital + Math.round(11 / 100 * invest.profit),
+                  funded: user.funded + Math.round(11 / 100 * invest.profit),
                 }
               }
           )
@@ -698,7 +698,8 @@ const change = (users, now) => {
                 {
                   $set:{
                     periodicProfit:user.periodicProfit + Math.round(6/100 * invest.profit),
-                    capital:user.capital + Math.round(6/100 * invest.profit),
+                    capital: user.capital + Math.round(6 / 100 * invest.profit),
+                    funded: user.funded + Math.round(6 / 100 * invest.profit),
                   }
                 }
           )
@@ -715,7 +716,8 @@ const change = (users, now) => {
             {
               $set:{
                 periodicProfit:user.periodicProfit + Math.round(4.5/100 * invest.profit),
-                capital:user.capital + Math.round(4.5/100 * invest.profit),
+                capital: user.capital + Math.round(4.5 / 100 * invest.profit),
+                funded: user.funded + Math.round(4.5 / 100 * invest.profit),
               }
             }
           )
