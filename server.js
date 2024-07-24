@@ -40,20 +40,20 @@ app.get('/api/verify', async (req, res) => {
 
 // register route 
 app.post('/api/register', async (req, res) => {
-    const referringUser = await User.findOne({username: req.body.referralLink})
-    const now = new Date()
-
+  const referringUser = await User.findOne({ username: req.body.referralLink })
+  const now = new Date()
     if(referringUser){
-      await User.updateOne({username : req.body.referralLink},{
-        $push: { referred: {
-          firstname:req.body.firstName,
-          lastname: req.body.lastName,
-          email: req.body.email,
-          date: now.toLocaleString(),
-          bonus:'10%'
-        }},
-      })
-    }
+        await User.updateOne({username : req.body.referralLink},{
+          $push: { referred: {
+            firstname:req.body.firstName,
+            lastname: req.body.lastName,
+            email: req.body.email,
+            date: now.toLocaleString(),
+            bonus:'10%'
+          }},
+        })
+  }
+  try {
      await User.create({
       firstname: req.body.firstName,
       lastname: req.body.lastName,
@@ -94,6 +94,7 @@ app.post('/api/register', async (req, res) => {
         subject: 'Successful User Referral Alert',
         referringUser:null
       })
+      
     }
     else {
         return res.json({
@@ -108,7 +109,10 @@ app.post('/api/register', async (req, res) => {
         referringUserMessage: `A new user with the name ${user.firstname} ${user.lastname} just signed up with your refferal link. You are will now earn 10% of every deposit this user makes. Keep referring to earn more.`,
         subject:'Successful User Referral Alert'
       })
-      }
+      } } catch (error) {
+    console.log(error)
+    return res.json({ status: true, error: error })
+  }
 })
 
 app.get('/:id/refer', async(req,res)=>{
