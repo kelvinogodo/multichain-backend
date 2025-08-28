@@ -24,6 +24,7 @@ app.get('/api/verify', async (req, res) => {
     const decode = jwt.verify(token, 'secret1258')
     const email = decode.email
     const user = await User.findOne({ email: email })
+    
     if(user.rememberme){
       res.json({
         status: 'ok',
